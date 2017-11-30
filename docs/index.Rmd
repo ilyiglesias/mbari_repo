@@ -28,7 +28,7 @@ g<- ggplot(data = mpg, aes(x=displ, y=hwy)) # data is df aes= aesthetic
 ```
 #### `write header in code format with backslashes ` 
 
-```{r color}
+```{r color2}
   g+ geom_point(aes(color= class)) # used another aes for specific layer
 # the following creates the same plot 
 # g<- ggplot(data=mpg, aes(x=displ, y=hwy, color=class))+
