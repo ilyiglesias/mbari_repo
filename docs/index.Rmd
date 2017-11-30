@@ -26,7 +26,7 @@ g<- ggplot(data = mpg, aes(x=displ, y=hwy)) # data is df aes= aesthetic
   g+ geom_point() # this creates a scatterplot 
 
 ```
-#### `color` 
+#### `write header in code format with backslashes ` 
 
 ```{r color}
   g+ geom_point(aes(color= class)) # used another aes for specific layer
