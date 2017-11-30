@@ -10,4 +10,22 @@ setwd() # tells R where to look
 list.files() # shows you piles in working directory project sets your working directory 
 # tools //  project options // text file 
 
-# Git tab 
+# Git tab tick boxes to "track" those files //COMMITT
+# sends changes to terminal 
+# add commit message
+# then PUSH to git to "push" the changes to git hub
+
+
+# pages at GIT hub - makes web pages?
+# folder called "docs" 
+# file new file rMarkdown called "index" 
+# save new rMarkdown as index.Rmd -- into your "docs" folder (inside repository)
+
+# knit this creates the website
+# push back to web
+
+
+
+
+
+
