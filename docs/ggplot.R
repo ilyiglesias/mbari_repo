@@ -8,3 +8,8 @@ library(tidyverse)
     # dplyr::filter() filter function in both stats {base} and dplyr
 
 # mapping= aes() 
+
+# to update website
+      # knit
+      # commit 
+      # push

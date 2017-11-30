@@ -117,10 +117,86 @@ ggplot(data=mpg, aes(x=displ, y= hwy)) +
        y= "Engine Displ (l)")
 ````
 
+## Data wrangling with `dplyr` 
+Today we will be working with Gap Minder data
+WE are going to read it in from GitHub 
+
+```{r github upload}
+# click on raw in git hub repository
+# copy url from git hub
+gapminder <- readr::read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv")
+gapminder # bc read_csv very viewable 
+
+#### useful functions to get to know your data:
+head(gapminder) # first 6 rows of data
+tail(gapminder) # tail show the last 6 rows of data 
+
+head(gapminder, 10) # "can pass how many lines you want to see"
+
+str(gapminder) # examines the structure of your data-- also tells you the dimensions of the dimensions
+## column names 
+names (gapminder) # returns column headers
+## dimensions of the data
+dim(gapminder) 
+ncol(gapminder) # number of columns
+nrow(gapminder) # number of rows 
+## combine with c()
+c(nrow(gapminder), ncol(gapminder)) # another way to view your dimersions "build dimensions"
+
+## summary
+summary(gapminder)  # statistical summary of each column in the dataset 
+
+## for everything above, we were operating on the whole gapminder dataset
+
+## column
+head(gapminder$lifeExp) # comand arrow key will get you from front and back
+# option arrows -- can flip between words and or shift keys?? will allow you to highlight them
 
 
 
 
+
+```
+## Actually working with dplyr
+we will be playing around with the many types of subseting: filter is the main one, select allows you to pull out specific columns +mutate allows you to add a new column. Summarize columns is if you made a summary stat such as mean that gives you a single value. Finally arrange() allows you to rearrange rows
+Group by: lets you work with groups 
+
+for all verbs:
+1. the first argument is a df
+2. describe what you are going to do with your data
+3. result is a new df 
+
+## filter - pulling rows out
+```{r}
+filter(gapminder, lifeExp < 29) # returns only those rows that meet this criteria
+# goign to filter gapminder data so life expectancy is less than 29 (literate programing)
+
+filter(gapminder, country=="Mexico") # selects only those rows where countries equal mexico, returns all columns 
+
+# what is the mean life expectancy of sweden
+sweden <- filter(gapminder, country=="Sweden")
+mean(sweden$lifeExp)
+
+mean(filter(gapminder, country=="Sweden")$lifeExp) # same as above 
+
+## pipe operator `%>%` -- searchcommand+ shift+ m also creates a pipe operator
+ gapminder %>% head(3) # set the data, then do a function data "and then" for pipe operator same as head(gapminder, 3)-- can still assign variables ! 
+ 
+## lets use the pipe for sweden example 
+y <- gapminder %>% 
+  filter(country== "Sweden") %>% 
+  summarize(mean_lifeExp= mean(lifeExp)) # ALWAYS returns a df 
+# bc of that we had to create a new column "mean_lifeExp" and can view classes
+# "take the  gapminder data, filter by sweden and then take mean of life exp
+
+
+
+
+
+```
+
+
+`read_csv` is from the read r package (part of the tidyverse)- it is not read.csv() from {base}
 
 
 

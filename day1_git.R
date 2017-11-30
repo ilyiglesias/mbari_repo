@@ -36,6 +36,12 @@ list.files() # shows you piles in working directory project sets your working di
 
 # then selct the link and it will route to the newly created website 
 
+# note: in ggplot mapping=aes()- don't need to worry about it
+
+# TIDYR #########
+# tidy data
+# every column is a variable, every obs has its own row 
+
 
 
 
