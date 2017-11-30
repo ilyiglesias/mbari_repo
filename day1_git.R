@@ -24,6 +24,23 @@ list.files() # shows you piles in working directory project sets your working di
 # knit this creates the website
 # push back to web
 
+# track new file (select check box next to docs/)
+
+# settings (in Git Hub) on the repository
+# scroll to GitHub Pages: change source to docs folder (master/docs....)
+# code tab// edit button// website (the one we just created)
+
+# from https://github.com/ilyiglesias/mbari_repo
+# to https://ilyiglesias.github.io/mbari_repo
+# could also add to personal website (create repository and will be website)
+
+# then selct the link and it will route to the newly created website 
+
+
+
+
+
+
 
 
 
