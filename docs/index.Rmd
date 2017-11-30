@@ -41,7 +41,7 @@ changed `color` to `shape`
 geom_point()
 ```
 
-#### `shape`: need a b&w figure 
+#### `shape`: create a different shape per point
 
 ```{r color}
   g+ geom_point(aes(color= class)) # used another aes for specific layer
@@ -49,6 +49,87 @@ geom_point()
 # g<- ggplot(data=mpg, aes(x=displ, y=hwy, color=class))+
 # g + geom_point()
 ```
+
+#### `size` change the size of the points
+
+```{r size}
+  ggplot(data=mpg, aes(x=cty, y=hwy, size=class, color=fl)) +
+            geom_point(alpha=0.2) # alpha changes transparency
+        
+```
+```{r fix color}
+  ggplot(data=mpg, aes(x=cty, y=hwy, size=class, color=fl)) +
+            geom_point(alpha=0.2, color="blue") # this changes the color to all blue
+        
+```
+## Exercise 
+```{r exercise 1}
+  ggplot(data=mpg) +
+            geom_point(aes(x= displ, y=hwy), color= "blue")
+        
+```
+## Geoms
+``` {r geom_examples}
+ggplot(mpg, aes(x=drv, y=hwy)) +
+  geom_jitter()
+````
+## Geoms
+``` {r geom_example2}
+ggplot(mpg, aes(x=drv, y=hwy)) +
+  geom_boxplot() # violin plot is geom_violin()
+````
+
+## Geoms_ violin
+``` {r geom_example3}
+ggplot(mpg, aes(x=drv, y=hwy)) +
+  geom_violin() # violin plot is geom_violin()
+````
+## multiple geoms
+``` {r geom_example3}
+ggplot(data=mpg) +
+  geom_point(aes(x=drv, y=hwy))+
+  geom_smooth(aes(x= displ, y=hwy))# different smooth methods, this was 'loess
+````
+``` {r same as above}
+ggplot(data=mpg, aes(x=displ, y= hwy)) +
+  geom_point()+
+  geom_smooth()
+````
+
+
+``` {r change text}
+ggplot(data=mpg, aes(x=displ, y= hwy)) +
+  geom_point()+
+  geom_smooth() +
+  labs(title="Relationship b/w engine size and mpg",
+       x= "Highway MPG",
+       y= "Engine Displ" ) +
+  theme_bw() +  # changes background
+  theme(text = element_text(size = 10))
+````
+
+``` {r exercise2}
+ggplot(data=mpg, aes(x=displ, y= hwy)) +
+  geom_point()+
+  geom_smooth() +
+  labs(title="Relationship b/w engine size and mpg",
+       x= "Highway MPG",
+       y= "Engine Displ (l)")
+````
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
