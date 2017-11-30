@@ -7,7 +7,7 @@ output:
     code_folding: hide
     toc: true
     toc_float: true
-    # the above statement is a way to have data for indiv variables or lists-- this turns on table of contents (float) and hides codes by default 
+    # the above statement adds a table of contents (floating) and hides codes by default 
 ---
 
 ```{r setup, include=FALSE}
@@ -22,12 +22,36 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 ## Scatterplot
 ```{r scatterplot}
 # data() to look at R data
-g<- ggplot(data = mpg, aes(x=displ, y=hwy)) # data is df  aes= aesthetic
- 
+g<- ggplot(data = mpg, aes(x=displ, y=hwy)) # data is df aes= aesthetic
   g+ geom_point() # this creates a scatterplot 
 
 ```
+#### `color` 
 
-#### I need color 
+```{r color}
+  g+ geom_point(aes(color= class)) # used another aes for specific layer
+# the following creates the same plot 
+# g<- ggplot(data=mpg, aes(x=displ, y=hwy, color=class))+
+# g + geom_point()
+```
+#### but i need a black and white figure
+changed `color` to `shape`
+```{r b&w}
+ ggplot(data=mpg, aes(x=displ, y=hwy, shape=class))+
+geom_point()
+```
+
+#### `shape`: need a b&w figure 
+
+```{r color}
+  g+ geom_point(aes(color= class)) # used another aes for specific layer
+# the following creates the same plot 
+# g<- ggplot(data=mpg, aes(x=displ, y=hwy, color=class))+
+# g + geom_point()
+```
+
+
+
+
 
 
