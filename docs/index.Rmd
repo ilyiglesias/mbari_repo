@@ -43,7 +43,7 @@ geom_point()
 
 #### `shape`: create a different shape per point
 
-```{r color}
+```{r shape}
   g+ geom_point(aes(color= class)) # used another aes for specific layer
 # the following creates the same plot 
 # g<- ggplot(data=mpg, aes(x=displ, y=hwy, color=class))+
