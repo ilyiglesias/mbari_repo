@@ -189,11 +189,112 @@ y <- gapminder %>%
 # bc of that we had to create a new column "mean_lifeExp" and can view classes
 # "take the  gapminder data, filter by sweden and then take mean of life exp
 
+```
 
+## select by columns with select function 
+```{r}
+## select 2 columns
+select(gapminder, year, lifeExp) # returns the same amount of rows, but only 2 columns
 
+## same as above but with pipe operator 
+gapminder %>% 
+  select(year, lifeExp) %>%
+  tail(10)
 
+## combine what we have learned so far..
+
+gapminder %>%
+  filter(country=="Cambodia")  %>% # selects for only the country of cambodia
+  select(country, year, pop, gdpPercap)
+
+## same as above
+gapminder %>%
+  filter(country=="Cambodia") %>%
+  select(-continent, -lifeExp) # just a clear way to do the above - means not that column
+
+##  a few more thanks with filter -- can filter for more than one thing
+gapminder %>%
+  filter(country=="Mexico", 
+         year==2002) # this selects only one row for mexico from 2002
+
+# if not indented, auto indent ORkeyboard shortbut select code and goto command i- will re indent line (will work for whole script of selected text)
 
 ```
+
+## `mutate()` to add columns 
+```{r}
+## mutate can add a new column
+gapminder %>%
+  mutate(gdp= pop*gdpPercap) # this adds a new column with our new column 
+
+## lets add an index column
+gapminder %>%
+  mutate(gdp= pop*gdpPercap) %>%
+  mutate(index= 1:nrow(gapminder)) %>%
+  tail()
+
+## OR could have both in one mutate function
+test <- gapminder %>%
+  mutate(gdp= pop*gdpPercap, 
+         index= 1:nrow(gapminder)) %>%
+          tail()
+
+# this is not the right way, use %in% intead
+gapminder %>%
+  filter(country==c("Egypt", "Vietnam")) # can filter by two countries
+         
+# in operator lets you filter multiple things c() within a c bind
+gapminder %>%
+  filter(country %in% c("Egypt", "Vietnam"))
+```
+
+## exercise max gdpPercap of Egypt and vietnam
+```{r}
+gapminder %>%
+  filter(country %in% c("Egypt", "Vietnam")) %>%
+  summarize(max(gdpPercap)) # this created only one value... this was not what she was looking for, see below:
+
+  gapminder %>%
+  filter(country %in% c("Egypt", "Vietnam")) %>%
+  mutate(max_gdpPerCap=max(gdpPercap)) # creates a new column with all of these values
+```
+
+## group_by()so that we can get 2 maxes
+```{r}
+gapminder%>%
+  filter(country %in% c("Egypt", "Vietnam")) %>%
+  group_by(country) %>%
+  summarize(max_gdpPercap= max(gdpPercap))
+  # mutate(max_gdpPerCap= max(gdpPerCap)) 
+# this returns the max from each country 
+# could also do this without assigning a name, but it uses a column name based on your function 
+
+gapminder %>%
+  group_by(country) %>%
+  summarize(max_gdpPercap=max(gdpPercap))
+
+
+## lets keep the year associated with max gdp variable max_gdpPecap
+gapminder %>%
+  group_by(country) %>%
+  mutate(max_gdpPercap= max(gdpPercap)) %>%
+  filter(max_gdpPercap == max(gdpPercap))
+
+## another way to create the same thing
+gapminder %>%
+  group_by(country) %>%
+  #mutate(max_gdpPercap= max(gdpPercap)) %>%
+  filter(gdpPercap == max(gdpPercap))
+  
+  
+  gapminder %>%
+  group_by(country) %>%
+  mutate(max_gdpPercap= max(gdpPercap)) %>%
+  filter(max_gdpPercap == max(gdpPercap))%>%
+  arrange(max_gdpPercap) # if you want descending order, use arrange(desc(max_gdpPercap))
+
+```
+
 
 
 `read_csv` is from the read r package (part of the tidyverse)- it is not read.csv() from {base}
